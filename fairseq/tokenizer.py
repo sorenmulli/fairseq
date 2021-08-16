@@ -5,11 +5,11 @@
 
 import re
 
-
+CHARACTER_LEVEL_DEFAULT = True
 SPACE_NORMALIZER = re.compile(r"\s+")
 
 
-def tokenize_line(line):
+def tokenize_line(line, character_level=CHARACTER_LEVEL_DEFAULT):
     line = SPACE_NORMALIZER.sub(" ", line)
     line = line.strip()
-    return line.split()
+    return list(line) if character_level else line.split()
